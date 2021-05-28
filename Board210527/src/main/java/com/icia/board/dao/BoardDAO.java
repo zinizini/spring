@@ -18,5 +18,6 @@ public class BoardDAO {
 	public int boardWrite(BoardDTO board) {
 		return sql.insert("bm.boardwrite", board);
 	}
+	
 
 }

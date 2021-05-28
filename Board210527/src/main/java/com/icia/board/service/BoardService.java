@@ -31,4 +31,41 @@ public class BoardService {
 		return mav;
 	}
 
+	public ModelAndView boardview(int bnumber) {
+		mav = new ModelAndView(); 
+		// 1. 해당 글의 조회수 값 1증가(update 쿼리)
+		// 2. 해당 글의 내용 가져오기(select 쿼리)
+		bdao.boardHits(bnumber);
+		
+		BoardDTO board = bdao.boardView(bnumber);
+		
+		mav.addObject("board",board);
+		mav.setViewName("boardview");
+		return mav;
+
+	}
+
+	public ModelAndView boardList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	public ModelAndView updateProcess(BoardDTO bnumber) {
+		mav = new ModelAndView();
+		int updateResult = bdao.updateProcess(bnumber);
+		if(updateResult > 0) {
+			mav.setViewName("boardlist");
+		}else {
+			mav.setViewName("");
+		}
+		return mav;
+	}
+
+	public ModelAndView update() {
+		mav = new ModelAndView();
+		return mav;
+	}
+
 }
